@@ -68,7 +68,7 @@ def edit_book(book_list):
 
     print("Book updated.")
 
-  except(ValueError, IndexError):
+  except ValueError:
     print("Invalid selection.")
 
 def delete_book(book_list):
@@ -80,7 +80,7 @@ def delete_book(book_list):
 
     print(f"{removed_book.title} removed.")
 
-  except(ValueError, IndexError):
+  except ValueError::
     print("Invalid selection.")
 
 def update_status(book_list):
@@ -98,7 +98,7 @@ def update_status(book_list):
 
     print("Status updated.")
 
-  except(ValueError, InputError):
+  except ValueError::
     print("Invalid selection.")
 
 #--- UI
@@ -134,6 +134,6 @@ def menu():
 
 #--- Run program
 if __name__ == "__main__":
-  main()
+  menu()
   
     
