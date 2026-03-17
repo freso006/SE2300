@@ -11,6 +11,7 @@ Course: SE 2300
 - Delete books
 - Update reading status (Not Started, In Progress, Finished)
 - Add reflections when a book is finished
+- Filter book list
 - Save books between sessions using a JSON file
 - Simple command-line interface
 
@@ -22,8 +23,8 @@ Course: SE 2300
 Clone with Git:
 `git clone https://github.com/freso006/SE2300.git`
 
-2. Navigate to the project folder:
-cd SE2300
+2. Navigate to the project folder:  
+`cd SE2300`
 
 3. Run the program:  
 `python3 shelfie.py`  
@@ -33,8 +34,7 @@ The program will start in the terminal.
    Type 'exit' to Save and Exit immediately
 
 ## Data Storage
-Book data is stored locally in a file called:  
-`books.json`  
+Book data is stored locally in a file called: `books.json`  
 This file is automatically created the first time the program runs.
 
 ## Example Menu
