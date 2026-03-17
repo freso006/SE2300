@@ -1,4 +1,5 @@
 import json
+import sys
 
 DATA_FILE = "books.json"
 
@@ -35,6 +36,16 @@ def save_books(book_list):
     json.dump([book.to_dict() for book in book_list], file, indent=4)
 
 #--- Core Functions
+def safe_input(prompt, book_list = None):
+  #takes user input, exits program if user types 'exit'
+  user_input = input(prompt).strip()
+  if user_input.lower() == "exit":
+    if book_list is not None:
+      save_books(book_list) #auto save
+    print("Books saved. Exiting Shelfie.")
+    sys.exit()
+  return user_input
+    
 def display_books(book_list):
   if not book_list:
     print("\nYour Shelfie list is empty.\n")
@@ -54,16 +65,16 @@ def filter_books(book_list):
   print("3. By Genre")
   print("4. Return to main menu")
 
-  choice = input("Choose an option: ")
+  choice = safe_input("Choose an option: ")
 
   if choice == "1":
-    status = input("Enter status to filter: ").strip().lower()
+    status = safe_input("Enter status to filter: ").strip().lower()
     filtered = [b for b in book_list if b.status.lower() == status]
   elif choice == "2":
-    intention = input("Enter reading intention to filter: ").strip().lower()
+    intention = safe_input("Enter reading intention to filter: ").strip().lower()
     filtered = [b for b in book_list if b.intention.lower() == intention.lower()]
   elif choice == "3":
-    genre = input("Enter book genre to filter: ").strip().lower()
+    genre = safe_input("Enter book genre to filter: ").strip().lower()
     filtered = [b for b in book_list if b.genre.lower() == genre.lower()]
   else:
     return
@@ -73,15 +84,15 @@ def filter_books(book_list):
 def add_book(book_list):
   #title cannot be empty
   while True:
-    title = input("\nEnter book title: ").strip()
+    title = safe_input("\nEnter book title: ", book_list).strip()
     if title:
       break
     print("Title cannot be empty. Please enter a valid book title.")
     
-  author = input("Enter author: ")
-  genre = input("Enter book genre: ")
-  intention = input("Enter reading intention: ")
-  color = input("Enter color tag: ")
+  author = safe_input("Enter author: ", book_list)
+  genre = safe_input("Enter book genre: ", book_list)
+  intention = safe_input("Enter reading intention: ", book_list)
+  color = safe_input("Enter color: ", book_list)
 
   new_book = Book(title, author, genre, intention, color)
   book_list.append(new_book)
@@ -97,7 +108,7 @@ def edit_book(book_list):
   display_books(book_list)
 
   try:
-    choice = int(input("Enter the number of the book to edit: ")) - 1
+    choice = int(safe_input("Enter the number of the book to edit: ")) - 1
 
     #check if book choice is valid
     if choice < 0 or choice >= len(book_list):
@@ -108,7 +119,7 @@ def edit_book(book_list):
 
     #title cannot be empty
     while True:
-      new_title = input(f"New title (leave blank to keep '{book.title}'): ").strip()
+      new_title = safe_input(f"New title (leave blank to keep '{book.title}'): ", book_list).strip()
       if new_title: 
         #update title
         book.title = new_title
@@ -117,10 +128,10 @@ def edit_book(book_list):
         #keep original title
         break
         
-    book.author = input(f"New author (leave blank to keep '{book.author}'): ") or book.author
-    book.genre = input("New book genre (leave blank to keep '{book.genre}'): ") or book.genre
-    book.intention = input("New reading intention (leave blank to keep '{book.intention}'): ") or book.intention
-    book.color = input("New color tag (leave blank to keep '{book.color}'): ") or book.color
+    book.author = safe_input(f"New author (leave blank to keep '{book.author}'): ", book_list) or book.author
+    book.genre = safe_input("New book genre (leave blank to keep '{book.genre}'): ", book_list) or book.genre
+    book.intention = safe_input("New reading intention (leave blank to keep '{book.intention}'): ", book_list) or book.intention
+    book.color = safe_input("New color tag (leave blank to keep '{book.color}'): ", book_list) or book.color
 
     save_books(book_list) #auto save
     
@@ -137,7 +148,7 @@ def delete_book(book_list):
   display_books(book_list)
 
   try:
-    choice = int(input("Enter the number of the book to delete: ")) - 1
+    choice = int(safe_input("Enter the number of the book to delete: ")) - 1
 
     #check if book choice is valid
     if choice < 0 or choice >= len(book_list):
@@ -161,19 +172,19 @@ def update_status(book_list):
   display_books(book_list)
 
   try:
-    choice = int(input("Enter the number of the book to change status: ")) - 1
+    choice = int(safe_input("Enter the number of the book to change status: ")) - 1
 
     #check if book choice is valid
     if choice < 0 or choice >= len(book_list):
       print("Invalid selection. Please enter a valid book number.\n")
       return
       
-    new_status = input("Enter new status (Not Started, In Progress, Finished): ")
+    new_status = safe_input("Enter new status (Not Started, In Progress, Finished): ", book_list)
 
     book_list[choice].status = new_status
 
     if new_status.lower() == "finished":
-      reflection = input("Enter your reflection of the book: ")
+      reflection = safe_input("Enter your reflection of the book: ", book_list)
       book_list[choice].reflection = reflection
     
     save_books(book_list) #auto save
@@ -195,7 +206,7 @@ def get_menu_choice():
     print("6. Filter books")
     print("7. Save and exit")
     
-    user_choice = input("Choose an option: ")
+    user_choice = safe_input("Choose an option: ")
 
     if user_choice in ["1", "2", "3", "4", "5", "6", "7"]:
       return user_choice
