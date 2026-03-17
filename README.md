@@ -18,14 +18,17 @@ It allows users to manage a digital "To Be Read" shelf by adding, editing, and o
 1. Download or clone the repository from GitHub.
 
 Clone with Git:
-git clone https://github.com/YOURUSERNAME/shelfie.git
+git clone https://github.com/freso006/shelfie.git
 
 2. Navigate to the project folder:
-cd shelfie
+cd SE2300
 
 3. Run the program:
 python3 shelfie.py
 The program will start in the terminal.
+
+4. Exit at anytime
+   Type 'exit' to Save and Exit immediately
 
 ## Data Storage
 Book data is stored locally in a file called:
@@ -38,11 +41,10 @@ Shelfie Reading Manager
 2. Add Book  
 3. Edit Book  
 4. Delete Book  
-5. Update Book Status  
-6. Exit
+5. Update Book Status
+6. Filter Books
+7. Save and Exit
 
 ## Project for SE 2300
 By Patty Fresonke
-## Author
 
-Your Name
