@@ -1,0 +1,139 @@
+import json
+
+DATA_FILE = "books.json"
+
+#--- Data type
+class Book:
+  def __init__(self, title, author, intention, color, status="Not Started", reflection=""):
+    self.title = title
+    self.author = author
+    self.intention = intention
+    self.color = color
+    self.status = status
+    self.reflection = reflection
+
+  def to_dict(self):
+    return self.__dict__
+
+  @staticmethod
+  def from_dict(data):
+    return Book(**data)
+
+#--- Data Storage
+def load_books():
+  try:
+    with open(DATA_FILE, "r") as file:
+      data = json.load(file)
+      return [Book.from_dict(book) for book in data]
+
+  except FileNotFoundError:
+    return []
+
+def save_books(book_list):
+  with open(DATA_FILE), "w") as file:
+    json.dump([book.to_dict() for book in book_list], file, indent=4)
+
+#--- Core Functions
+def display_books(book_list):
+  if not book_list:
+    print("\nYour Shelfie list is empty.\n")
+    return
+
+  print("\nYour Books:")
+  for index, book in enumerate(book_list, start=1):
+    print(f"{index}. {book.title} by {book.author} | {book.status} | {book.intention}")
+
+def add_book(book_list):
+  title = input("Enter book title: ")
+  author = input("Enter author: ")
+  intention = input("Enter reading intention: ")
+  color = input("Enter color tag: ")
+
+  new_book = Book(title, author, intention, color)
+  book_list.append(new_book)
+
+  print("Book added successfully.")
+
+def edit_book(book_list):
+  display_books(book_list)
+
+  try:
+    choice = int(input("Enter the number of the book to edit: ")) - 1
+    book = book_list[choice]
+
+    book.title = input("New title: ")
+    book.author = input("New author: ")
+    book.intention = input("New reading intention: ")
+    book.color = input("New color tag: ")
+
+    print("Book updated.")
+
+  except(ValueError, IndexError):
+    print("Invalid selection.")
+
+def delete_book(book_list):
+  display_books(book_list)
+
+  try:
+    choice = int(input("Enter the number of the book to delete: ")) - 1
+    removed_book = book_list.pop(choice)
+
+    print(f"{removed_book.title} removed.")
+
+  except(ValueError, IndexError):
+    print("Invalid selection.")
+
+def update_status(book_list):
+  display_books(book_list)
+
+  try:
+    choice = int(input("Enter the number of the book to change status: ")) - 1
+    new_status = input("Enter new status (Not Started, In Progress, Finished): ")
+
+    book_list[choice].status = new_status
+
+    if new_status.lower() == "finished":
+      reflection = input("Enter your reflection of the book: ")
+      book_list[choice].reflection = reflection
+
+    print("Status updated.")
+
+  except(ValueError, InputError):
+    print("Invalid selection.")
+
+#--- UI
+def menu():
+  book_list = load_books()
+
+  while True:
+    menu()
+    user_choice = input("Choose an option: ")
+
+    if user_choice == "1":
+      display_books(book_list)
+
+    elif user_choice == "2":
+      add_book(book_list)
+
+    elif user_choice == "3":
+      edit_book(book_list)
+
+    elif user_choice == "4":
+      delete_book(book_list)
+
+    elif user_choice == "5":
+      update_status(book_list)
+
+    elif user_choice == "6":
+      save_books(book_list)
+      print("Books saved. Goodbye.")
+      break
+
+  else:
+    print("Invalid option. Please try again.")
+
+#--- Run program
+if __name__ == "__main__":
+  main()
+  
+    
