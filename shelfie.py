@@ -4,9 +4,10 @@ DATA_FILE = "books.json"
 
 #--- Data type
 class Book:
-  def __init__(self, title, author, intention, color, status="Not Started", reflection=""):
+  def __init__(self, title, author, genre, intention, color, status="Not Started", reflection=""):
     self.title = title
     self.author = author
+    self.genre = genre
     self.intention = intention
     self.color = color
     self.status = status
@@ -41,7 +42,7 @@ def display_books(book_list):
 
   print("\nYour Books:")
   for index, book in enumerate(book_list, start=1):
-    print(f"{index}. {book.title} by {book.author} | {book.status} | {book.intention}")
+    print(f"{index}. {book.title} by {book.author} | {book.status} | {book.genre} | {book.intention}")
 
 def add_book(book_list):
   #title cannot be empty
@@ -52,10 +53,11 @@ def add_book(book_list):
     print("Title cannot be empty. Please enter a valid book title.")
     
   author = input("Enter author: ")
+  genre = input("Enter book genre: ")
   intention = input("Enter reading intention: ")
   color = input("Enter color tag: ")
 
-  new_book = Book(title, author, intention, color)
+  new_book = Book(title, author, genre, intention, color)
   book_list.append(new_book)
   save_books(book_list) #auto save
 
@@ -90,6 +92,7 @@ def edit_book(book_list):
         break
         
     book.author = input(f"New author (leave blank to keep '{book.author}'): ")
+    book.genre = input("New book genre (leave blank to keep '{book.genre}'): ")
     book.intention = input("New reading intention (leave blank to keep '{book.intention}'): ")
     book.color = input("New color tag (leave blank to keep '{book.color}'): ")
 
