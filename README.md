@@ -27,7 +27,7 @@ cd SE2300
 python3 shelfie.py
 The program will start in the terminal.
 
-4. Exit at anytime
+4. Exit at anytime:
    Type 'exit' to Save and Exit immediately
 
 ## Data Storage
