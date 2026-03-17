@@ -35,8 +35,8 @@ The program will start in the terminal.
    Type 'exit' to Save and Exit immediately
 
 ## Data Storage
-Book data is stored locally in a file called: `books.json`  
-This file is automatically created the first time the program runs.
+- Book data is stored locally in a file called: `books.json`
+- This file is automatically created the first time the program runs.
 
 ## Example Menu
 Shelfie Reading Manager
