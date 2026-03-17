@@ -44,6 +44,32 @@ def display_books(book_list):
   for index, book in enumerate(book_list, start=1):
     print(f"{index}. {book.title} by {book.author} | {book.status} | {book.genre} | {book.intention}")
 
+def filter_books(book_list):
+  if not book_list:
+    print("\nYour Shelfie list is empty.\n")
+    return
+  print("\nFilter options:")
+  print("1. By Status (Not Started, In Progress, Finished)")
+  print("2. By Reading Intention")
+  print("3. By Genre")
+  print("4. Return to main menu")
+
+  choice = input("Choose an option: ")
+
+  if choice == "1":
+    status = input("Enter status to filter: ").title()
+    filtered = [b for b in book_list if b.status == status]
+  elif choice == "2":
+    intention = input("Enter reading intention to filter: ").title()
+    filtered = [b for b in book_list if b.intention.lower() == intention.lower()]
+  elif choice == "3":
+    genre = input("Enter book genre to filter: ").title()
+    filtered = [b for b in book_list if b.genre.lower() == genre.lower()]
+  else:
+    return
+
+  display_books(filtered)
+
 def add_book(book_list):
   #title cannot be empty
   while True:
@@ -166,7 +192,8 @@ def get_menu_choice():
     print("3. Edit book")
     print("4. Delete book")
     print("5. Update status")
-    print("6. Save and exit")
+    print("6. Filter books")
+    print("7. Save and exit")
     
     user_choice = input("Choose an option: ")
 
