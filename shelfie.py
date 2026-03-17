@@ -30,7 +30,7 @@ def load_books():
     return []
 
 def save_books(book_list):
-  with open(DATA_FILE), "w") as file:
+  with open(DATA_FILE, "w") as file:
     json.dump([book.to_dict() for book in book_list], file, indent=4)
 
 #--- Core Functions
