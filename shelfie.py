@@ -106,7 +106,14 @@ def menu():
   book_list = load_books()
 
   while True:
-    menu()
+    print("\nMenu:")
+    print("1. Display books")
+    print("2. Add book")
+    print("3. Edit book")
+    print("4. Delete book")
+    print("5. Update status")
+    print("6. Save and exit")
+    
     user_choice = input("Choose an option: ")
 
     if user_choice == "1":
