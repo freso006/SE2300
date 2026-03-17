@@ -17,6 +17,7 @@ Course: SE 2300
 
 ## Requirements
 - Python 3 installed on your computer
+- Basic understanding of command-line and Git
 
 ## How to Run the Program
 1. Download or clone the repository from GitHub.  
