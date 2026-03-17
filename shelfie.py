@@ -80,7 +80,7 @@ def delete_book(book_list):
 
     print(f"{removed_book.title} removed.")
 
-  except ValueError::
+  except ValueError:
     print("Invalid selection.")
 
 def update_status(book_list):
