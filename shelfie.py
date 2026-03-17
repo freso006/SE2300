@@ -57,8 +57,9 @@ def add_book(book_list):
 
   new_book = Book(title, author, intention, color)
   book_list.append(new_book)
+  save_books(book_list) #auto save
 
-  print("Book added successfully.")
+  print("Book added successfully.\n")
 
 def edit_book(book_list):
   if not book_list:
@@ -92,6 +93,8 @@ def edit_book(book_list):
     book.intention = input("New reading intention (leave blank to keep '{book.intention}'): ")
     book.color = input("New color tag (leave blank to keep '{book.color}'): ")
 
+    save_books(book_list) #auto save
+    
     print("Book updated.\n")
 
   except ValueError:
@@ -114,7 +117,9 @@ def delete_book(book_list):
       
     removed_book = book_list.pop(choice)
 
-    print(f"\n{removed_book.title} removed.\n")
+    save_books(book_list) #auto save
+    
+    print(f"{removed_book.title} removed.\n")
 
   except ValueError:
     print("Invalid selection.")
@@ -141,6 +146,8 @@ def update_status(book_list):
     if new_status.lower() == "finished":
       reflection = input("Enter your reflection of the book: ")
       book_list[choice].reflection = reflection
+    
+    save_books(book_list) #auto save
 
     print("Status updated.")
 
