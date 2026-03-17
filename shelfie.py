@@ -55,6 +55,10 @@ def add_book(book_list):
   print("Book added successfully.")
 
 def edit_book(book_list):
+  if not book_list:
+    print("\nYour Shelfie list is empty. There is nothing to edit.\n")
+    return  # go back to menu immediately
+    
   display_books(book_list)
 
   try:
@@ -72,6 +76,10 @@ def edit_book(book_list):
     print("Invalid selection.")
 
 def delete_book(book_list):
+  if not book_list:
+    print("\nYour Shelfie list is empty. There is nothing to delete.\n")
+    return  # go back to menu immediately
+    
   display_books(book_list)
 
   try:
@@ -84,6 +92,10 @@ def delete_book(book_list):
     print("Invalid selection.")
 
 def update_status(book_list):
+  if not book_list:
+    print("\nYour Shelfie list is empty. There is nothing to update.\n")
+    return  # go back to menu immediately
+    
   display_books(book_list)
 
   try:
@@ -117,7 +129,7 @@ def get_menu_choice():
     if user_choice in ["1", "2", "3", "4", "5", "6"]:
       return user_choice
     else:
-      print("Invalid option. Please enter a number between 1-6.")
+      print("\nInvalid option. Please enter a number between 1-6.\n")
       
 def menu():
   book_list = load_books()
