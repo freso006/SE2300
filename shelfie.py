@@ -44,7 +44,7 @@ def display_books(book_list):
     print(f"{index}. {book.title} by {book.author} | {book.status} | {book.intention}")
 
 def add_book(book_list):
-  title = input("Enter book title: ")
+  title = input("\nEnter book title: ")
   author = input("Enter author: ")
   intention = input("Enter reading intention: ")
   color = input("Enter color tag: ")
