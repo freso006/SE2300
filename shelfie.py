@@ -102,9 +102,7 @@ def update_status(book_list):
     print("Invalid selection.")
 
 #--- UI
-def menu():
-  book_list = load_books()
-
+def get_menu_choice():
   while True:
     print("\nMenu:")
     print("1. Display books")
@@ -115,6 +113,17 @@ def menu():
     print("6. Save and exit")
     
     user_choice = input("Choose an option: ")
+
+    if user_choice in ["1", "2", "3", "4", "5", "6"]:
+      return user_choice
+    else:
+      print("Invalid option. Please enter a number between 1-6.")
+      
+def menu():
+  book_list = load_books()
+
+  while True:
+    user_choice = get_menu_choice()
 
     if user_choice == "1":
       display_books(book_list)
