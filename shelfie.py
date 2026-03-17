@@ -63,6 +63,12 @@ def edit_book(book_list):
 
   try:
     choice = int(input("Enter the number of the book to edit: ")) - 1
+
+    #check if book choice is valid
+    if choice < 0 or choice >= len(book_list):
+      print("Invalid selection. Please enter a valid book number.\n")
+      return
+    
     book = book_list[choice]
 
     book.title = input("New title: ")
@@ -84,6 +90,12 @@ def delete_book(book_list):
 
   try:
     choice = int(input("Enter the number of the book to delete: ")) - 1
+
+    #check if book choice is valid
+    if choice < 0 or choice >= len(book_list):
+      print("Invalid selection. Please enter a valid book number.\n")
+      return
+      
     removed_book = book_list.pop(choice)
 
     print(f"{removed_book.title} removed.")
@@ -100,6 +112,12 @@ def update_status(book_list):
 
   try:
     choice = int(input("Enter the number of the book to change status: ")) - 1
+
+    #check if book choice is valid
+    if choice < 0 or choice >= len(book_list):
+      print("Invalid selection. Please enter a valid book number.\n")
+      return
+      
     new_status = input("Enter new status (Not Started, In Progress, Finished): ")
 
     book_list[choice].status = new_status
