@@ -79,7 +79,7 @@ def edit_book(book_list):
 
     #title cannot be empty
     while True:
-      new_title = input(f"New title (leave blank to keep '{book.title'): ").strip()
+      new_title = input(f"New title (leave blank to keep '{book.title}'): ").strip()
       if new_title: 
         #update title
         book.title = new_title
@@ -88,9 +88,9 @@ def edit_book(book_list):
         #keep original title
         break
         
-    book.author = input(f"New author (leave blank to keep '{book.author'): ")
-    book.intention = input("New reading intention (leave blank to keep '{book.intention'): ")
-    book.color = input("New color tag (leave blank to keep '{book.color'): ")
+    book.author = input(f"New author (leave blank to keep '{book.author}'): ")
+    book.intention = input("New reading intention (leave blank to keep '{book.intention}'): ")
+    book.color = input("New color tag (leave blank to keep '{book.color}'): ")
 
     print("Book updated.\n")
 
