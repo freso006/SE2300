@@ -98,7 +98,7 @@ def update_status(book_list):
 
     print("Status updated.")
 
-  except ValueError::
+  except ValueError:
     print("Invalid selection.")
 
 #--- UI
