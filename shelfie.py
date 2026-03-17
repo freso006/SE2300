@@ -57,13 +57,13 @@ def filter_books(book_list):
   choice = input("Choose an option: ")
 
   if choice == "1":
-    status = input("Enter status to filter: ").title()
-    filtered = [b for b in book_list if b.status == status]
+    status = input("Enter status to filter: ").strip().lower()
+    filtered = [b for b in book_list if b.status.lower() == status]
   elif choice == "2":
-    intention = input("Enter reading intention to filter: ").title()
+    intention = input("Enter reading intention to filter: ").strip().lower()
     filtered = [b for b in book_list if b.intention.lower() == intention.lower()]
   elif choice == "3":
-    genre = input("Enter book genre to filter: ").title()
+    genre = input("Enter book genre to filter: ").strip().lower()
     filtered = [b for b in book_list if b.genre.lower() == genre.lower()]
   else:
     return
@@ -117,10 +117,10 @@ def edit_book(book_list):
         #keep original title
         break
         
-    book.author = input(f"New author (leave blank to keep '{book.author}'): ")
-    book.genre = input("New book genre (leave blank to keep '{book.genre}'): ")
-    book.intention = input("New reading intention (leave blank to keep '{book.intention}'): ")
-    book.color = input("New color tag (leave blank to keep '{book.color}'): ")
+    book.author = input(f"New author (leave blank to keep '{book.author}'): ") or book.author
+    book.genre = input("New book genre (leave blank to keep '{book.genre}'): ") or book.genre
+    book.intention = input("New reading intention (leave blank to keep '{book.intention}'): ") or book.intention
+    book.color = input("New color tag (leave blank to keep '{book.color}'): ") or book.color
 
     save_books(book_list) #auto save
     
@@ -197,10 +197,10 @@ def get_menu_choice():
     
     user_choice = input("Choose an option: ")
 
-    if user_choice in ["1", "2", "3", "4", "5", "6"]:
+    if user_choice in ["1", "2", "3", "4", "5", "6", "7"]:
       return user_choice
     else:
-      print("\nInvalid option. Please enter a number between 1-6.\n")
+      print("\nInvalid option. Please enter a number between 1-7.\n")
       
 def menu():
   book_list = load_books()
