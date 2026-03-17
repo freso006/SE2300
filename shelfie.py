@@ -87,7 +87,7 @@ def add_book(book_list):
   book_list.append(new_book)
   save_books(book_list) #auto save
 
-  print("Book added successfully.\n")
+  print("\nBook added successfully.\n")
 
 def edit_book(book_list):
   if not book_list:
@@ -124,7 +124,7 @@ def edit_book(book_list):
 
     save_books(book_list) #auto save
     
-    print("Book updated.\n")
+    print("\nBook updated.\n")
 
   except ValueError:
     print("Invalid selection.")
@@ -148,7 +148,7 @@ def delete_book(book_list):
 
     save_books(book_list) #auto save
     
-    print(f"{removed_book.title} removed.\n")
+    print(f"\n{removed_book.title} removed.\n")
 
   except ValueError:
     print("Invalid selection.")
@@ -178,7 +178,7 @@ def update_status(book_list):
     
     save_books(book_list) #auto save
 
-    print("Status updated.")
+    print("\nStatus updated.\n")
 
   except ValueError:
     print("Invalid selection.")
@@ -224,6 +224,9 @@ def menu():
       update_status(book_list)
 
     elif user_choice == "6":
+      filter_books(book_list)
+
+    elif user_choice == "7":
       save_books(book_list)
       print("Books saved. Goodbye.")
       break
