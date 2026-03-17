@@ -44,7 +44,13 @@ def display_books(book_list):
     print(f"{index}. {book.title} by {book.author} | {book.status} | {book.intention}")
 
 def add_book(book_list):
-  title = input("\nEnter book title: ")
+  #title cannot be empty
+  while True:
+    title = input("\nEnter book title: ").strip()
+    if title:
+      break
+    print("Title cannot be empty. Please enter a valid book title.")
+    
   author = input("Enter author: ")
   intention = input("Enter reading intention: ")
   color = input("Enter color tag: ")
@@ -71,12 +77,22 @@ def edit_book(book_list):
     
     book = book_list[choice]
 
-    book.title = input("New title: ")
-    book.author = input("New author: ")
-    book.intention = input("New reading intention: ")
-    book.color = input("New color tag: ")
+    #title cannot be empty
+    while True:
+      new_title = input(f"New title (leave blank to keep '{book.title'): ").strip()
+      if new_title: 
+        #update title
+        book.title = new_title
+        break
+      elif new_title == "":
+        #keep original title
+        break
+        
+    book.author = input(f"New author (leave blank to keep '{book.author'): ")
+    book.intention = input("New reading intention (leave blank to keep '{book.intention'): ")
+    book.color = input("New color tag (leave blank to keep '{book.color'): ")
 
-    print("Book updated.")
+    print("Book updated.\n")
 
   except ValueError:
     print("Invalid selection.")
@@ -98,7 +114,7 @@ def delete_book(book_list):
       
     removed_book = book_list.pop(choice)
 
-    print(f"{removed_book.title} removed.")
+    print(f"\n{removed_book.title} removed.\n")
 
   except ValueError:
     print("Invalid selection.")
