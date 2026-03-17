@@ -45,6 +45,6 @@ Shelfie Reading Manager
 6. Filter Books
 7. Save and Exit
 
-## Project for SE 2300
+# Project for SE 2300
 By Patty Fresonke
 
